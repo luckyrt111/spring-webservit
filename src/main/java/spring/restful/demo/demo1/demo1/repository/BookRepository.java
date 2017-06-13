@@ -22,12 +22,57 @@ public class BookRepository {
         bookList.add(new BookEntity(2, ".Net tutorial", 23.9, "Peter"));
     }
 
+    //lẤY DỮ LIỆU
     public List<BookEntity> findAll() {
         return bookList;
     }
 
+    //THÊM DỮ LIỆU
     public BookEntity save(BookEntity bookEntity) {
         bookList.add(bookEntity);
         return bookEntity;
+    }
+
+    //SỬA DỮ LIỆU
+    public BookEntity update(BookEntity newBookData) {
+        boolean isFound = false;
+        BookEntity foundBook = null;
+        // check if boook ID is existing
+        for(BookEntity book: bookList) {
+            if (book.getId() == newBookData.getId()) {
+                isFound = true;
+                foundBook = book;
+                break;
+            }
+        }
+
+        if (!isFound) {
+            return null;
+        }
+
+        bookList.remove(foundBook);
+        newBookData.setId(foundBook.getId());
+        bookList.add(newBookData);
+        return newBookData;
+    }
+
+    //XÓA DỮ LIỆU
+    public boolean delete(int bookID) {
+        boolean isFound = false;
+        BookEntity foundBook = null;
+        // check if boook ID is existing
+        for(BookEntity book: bookList) {
+            if (book.getId() == bookID) {
+                isFound = true;
+                foundBook = book;
+                break;
+            }
+        }
+
+        if (!isFound) {
+            return false;
+        }
+        bookList.remove(foundBook);
+        return true;
     }
 }

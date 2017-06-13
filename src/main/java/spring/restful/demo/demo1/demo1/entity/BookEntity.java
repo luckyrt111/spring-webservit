@@ -9,6 +9,9 @@ public class BookEntity {
     private Double price;
     private String author;
 
+    public BookEntity() {
+    }
+
     public BookEntity(int id, String name, Double price, String author) {
         this.id = id;
         this.name = name;
@@ -47,4 +50,6 @@ public class BookEntity {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+
 }
